@@ -38,7 +38,6 @@ let router = new Router({
         title: "首页",
       },
     },
-
     {
       path: "/",
       title: "首页",
@@ -68,7 +67,7 @@ let router = new Router({
           children: [
             {
               path: "/user/student",
-              component: Dashboard,
+              component: () => import("@/views/user/student/index.vue"),
               title: "学员管理",
               menuShow: true,
             },
@@ -83,7 +82,7 @@ let router = new Router({
           children: [
             {
               path: "/user/teacher",
-              component: Dashboard,
+              component: () => import("@/views/user/teacher/index.vue"),
               title: "讲师管理",
               menuShow: true,
             },
@@ -98,7 +97,7 @@ let router = new Router({
           children: [
             {
               path: "/user/assist",
-              component: Dashboard,
+              component: () => import("@/views/user/assist/index.vue"),
               title: "助教管理",
               menuShow: true,
             },
@@ -113,7 +112,7 @@ let router = new Router({
           children: [
             {
               path: "/user/role",
-              component: Dashboard,
+              component: () => import("@/views/user/role/index.vue"),
               title: "后台角色管理",
               menuShow: true,
             },
@@ -128,7 +127,7 @@ let router = new Router({
           children: [
             {
               path: "/user/account",
-              component: Dashboard,
+              component: () => import("@/views/user/account/index.vue"),
               title: "后台用户管理",
               menuShow: true,
             },
@@ -136,6 +135,7 @@ let router = new Router({
         },
       ],
     },
+
     {
       path: "/finance",
       name: "Finance", // 根据name区分不同子模块（左侧导航）
@@ -148,6 +148,7 @@ let router = new Router({
         {
           path: "/finance/order",
           component: LeftNav,
+          redirect: "/finance/order/manage",
           name: "Order", // 当前路由的name
           iconCls: "iconfont icon-home", // 图标样式class
           menuShow: true,
@@ -161,13 +162,14 @@ let router = new Router({
             },
             {
               path: "/finance/bills/payments",
-              component: Dashboard,
+              component: () =>
+                import("@/views/finance/bills/payments/index.vue"),
               title: "收款单",
               menuShow: true,
             },
             {
               path: "/finance/bills/ship",
-              component: Dashboard,
+              component: () => import("@/views/finance/bills/ship/index.vue"),
               title: "发货单",
               menuShow: true,
             },
@@ -177,304 +179,373 @@ let router = new Router({
               title: "退款审批",
               menuShow: true,
             },
-          ],
-        },
-        {
-          path: "/user/teacher",
-          component: LeftNav,
-          name: "mySet", // 当前路由的name
-          iconCls: "iconfont icon-home", // 图标样式class
-          menuShow: true,
-          children: [
             {
-              path: "/user/teacher",
-              component: Dashboard,
-              title: "讲师管理",
+              path: "/finance/order/address",
+              component: () =>
+                import("@/views/finance/order/address/index.vue"),
+              title: "发货地址",
+              menuShow: true,
+            },
+            {
+              path: "/finance/order/setting",
+              component: () =>
+                import("@/views/finance/order/setting/index.vue"),
+              title: "订单设置",
               menuShow: true,
             },
           ],
         },
         {
-          path: "/user/assist",
+          path: "/finance/vcurrency",
           component: LeftNav,
-          name: "mySet", // 当前路由的name
+          redirect: "/finance/vcurrency/record",
+          name: "Vcurrency", // 当前路由的name
           iconCls: "iconfont icon-home", // 图标样式class
           menuShow: true,
+          title: "金币管理",
           children: [
             {
-              path: "/user/assist",
-              component: Dashboard,
-              title: "助教管理",
+              path: "/finance/vcurrency/record",
+              component: () =>
+                import("@/views/finance/vcurrency/record/index.vue"),
+              title: "金币充值记录",
               menuShow: true,
             },
-          ],
-        },
-        {
-          path: "/user/role",
-          component: LeftNav,
-          name: "mySet", // 当前路由的name
-          iconCls: "iconfont icon-home", // 图标样式class
-          menuShow: true,
-          children: [
             {
-              path: "/user/role",
-              component: Dashboard,
-              title: "后台角色管理",
-              menuShow: true,
-            },
-          ],
-        },
-        {
-          path: "/user/account",
-          component: LeftNav,
-          name: "mySet", // 当前路由的name
-          iconCls: "iconfont icon-home", // 图标样式class
-          menuShow: true,
-          children: [
-            {
-              path: "/user/account",
-              component: Dashboard,
-              title: "后台用户管理",
+              path: "/finance/vcurrency/balance",
+              component: () =>
+                import("@/views/finance/vcurrency/balance/index.vue"),
+              title: "金币余额管理",
               menuShow: true,
             },
           ],
         },
       ],
     },
+
     {
-      path: "/dashboardManager",
-      name: "dashboard", // 根据name区分不同子模块（左侧导航）
-      redirect: "/dashboard/plan",
-      type: "dashboard",
-      title: "工作台",
+      path: "/course",
+      name: "Course", // 根据name区分不同子模块（左侧导航）
+      redirect: "/course/manage",
+      type: "course",
+      title: "教学",
       component: Home,
       menuShow: true,
       children: [
         {
-          path: "/dashboard/plan",
+          path: "/course/manage",
           component: LeftNav,
-          title: "我的设置",
-          iconCls: "el-icon-menu",
-          menuShow: true,
-          children: [
-            {
-              path: "/dashboard/plan",
-              component: Plan,
-              title: "行程计划",
-              menuShow: true,
-            },
-            {
-              path: "/dashboard/mission",
-              component: Mission,
-              title: "我的任务",
-              menuShow: true,
-            },
-            {
-              path: "/dashboard/maillist",
-              component: Maillist,
-              title: "通讯录",
-              menuShow: true,
-            },
-          ],
-        },
-        {
-          path: "/dashboard/mySet",
-          component: LeftNav,
-          name: "mySet", // 当前路由的name
+          redirect: "/course/manage",
+          name: "CourseManage", // 当前路由的name
           iconCls: "iconfont icon-home", // 图标样式class
           menuShow: true,
+          title: "课程管理",
           children: [
             {
-              path: "/dashboard/mySet",
-              component: Dashboard,
-              title: "首页",
+              path: "/course/manage",
+              component: () => import("@/views/course/manage/index.vue"),
+              title: "课程管理",
+              menuShow: true,
+            },
+            {
+              path: "/course/open-course",
+              component: () => import("@/views/course/open-course/index.vue"),
+              title: "公开课管理",
+              menuShow: true,
+            },
+            {
+              path: "/course/sharing",
+              component: () => import("@/views/course/sharing/index.vue"),
+              title: "课程共享管理",
+              menuShow: true,
+            },
+            {
+              path: "/course/catagory",
+              component: () => import("@/views/course/catagory/index.vue"),
+              title: "课程分类",
+              menuShow: true,
+            },
+            {
+              path: "/course/mobile-share",
+              component: () => import("@/views/course/mobile-share/index.vue"),
+              title: "课程分享海报",
+              menuShow: true,
+            },
+            {
+              path: "/course/service-tag",
+              component: () => import("@/views/course/service-tag/index.vue"),
+              title: "课程服务标签",
+              menuShow: true,
+            },
+            {
+              path: "/course/setting",
+              component: () => import("@/views/course/setting/index.vue"),
+              title: "课程设置",
               menuShow: true,
             },
           ],
         },
+        // {
+        //   path: "/finance/vcurrency",
+        //   component: LeftNav,
+        //   redirect: "/finance/vcurrency/record",
+        //   name: "Vcurrency", // 当前路由的name
+        //   iconCls: "iconfont icon-home", // 图标样式class
+        //   menuShow: true,
+        //   title: "金币管理",
+        //   children: [
+        //     {
+        //       path: "/finance/vcurrency/record",
+        //       component: () =>
+        //         import("@/views/finance/vcurrency/record/index.vue"),
+        //       title: "金币充值记录",
+        //       menuShow: true,
+        //     },
+        //     {
+        //       path: "/finance/vcurrency/balance",
+        //       component: () =>
+        //         import("@/views/finance/vcurrency/balance/index.vue"),
+        //       title: "金币余额管理",
+        //       menuShow: true,
+        //     },
+        //   ],
+        // },
       ],
     },
-    {
-      path: "/enterpriseManager",
-      type: "enterprise",
-      name: "enterprise",
-      title: "企业管理",
-      component: Home,
-      redirect: "/enterprise/list",
-      menuShow: true,
-      children: [
-        {
-          path: "/enterprise/list",
-          component: LeftNav,
-          name: "enterpriseList",
-          title: "企业数据",
-          iconCls: "iconfont icon-home", // 图标样式class
-          menuShow: true,
-          children: [
-            {
-              path: "/enterprise/list",
-              component: EnterpriseList,
-              title: "企业列表",
-              name: "abcde3",
-              menuShow: true,
-            },
-            {
-              path: "/enterprise/detail",
-              component: EnterpriseDetail,
-              title: "企业详情",
-              name: "abcde4",
-              menuShow: false,
-            },
-          ],
-        },
-        {
-          path: "/enterprise/add",
-          component: LeftNav,
-          name: "enterpriseAdd",
-          iconCls: "el-icon-menu",
-          menuShow: true,
-          children: [
-            {
-              path: "/enterprise/add",
-              component: EnterpriseAdd,
-              title: "企业添加",
-              name: "abcde",
-              menuShow: true,
-            },
-          ],
-        },
-        {
-          path: "/enterprise/validate",
-          component: LeftNav,
-          name: "enterpriseValidate",
-          iconCls: "el-icon-menu",
-          menuShow: true,
-          children: [
-            {
-              path: "/enterprise/validate",
-              component: EnterpriseValidate,
-              title: "企业认证",
-              name: "ddfff",
-              menuShow: true,
-            },
-          ],
-        },
-      ],
-    },
-    {
-      path: "/vehicleManager",
-      type: "vehicle",
-      name: "vehicle",
-      title: "车辆信息",
-      component: Home,
-      redirect: "/vehicle/list",
-      menuShow: true,
-      children: [
-        {
-          path: "/vehicle/list",
-          component: LeftNav,
-          name: "vehicleList",
-          iconCls: "iconfont icon-home", // 图标样式class
-          menuShow: true,
-          children: [
-            {
-              path: "/vehicle/list",
-              component: VehicleManage,
-              title: "车辆信息",
-              name: "aaaabcde",
-              menuShow: true,
-            },
-          ],
-        },
-      ],
-    },
-    {
-      path: "/deptManager",
-      type: "Question",
-      name: "Question",
-      title: "题库",
-      component: Home,
-      redirect: "/question/list",
-      menuShow: true,
-      children: [
-        {
-          path: "/question",
-          component: LeftNav,
-          redirect: "/question/list",
-          name: "QuestionList",
-          iconCls: "iconfont icon-home", // 图标样式class
-          menuShow: true,
-          children: [
-            {
-              path: "/question/list",
-              component: DeptManager,
-              title: "题库管理",
-              name: "QuestionBankManageWrap",
-              menuShow: true,
-            },
-          ],
-        },
-      ],
-    },
-    {
-      path: "/financeManager",
-      type: "finance", // 根据type区分不同模块（顶部导航）
-      name: "finance", // 根据name区分不同子模块（左侧导航）
-      title: "财务",
-      redirect: "/finance/aaaaa",
-      component: Home,
-      menuShow: true,
-      children: [
-        {
-          path: "/finance/aaaaa",
-          component: LeftNav,
-          title: "订单管理",
-          name: "dingdanguanli",
-          iconCls: "el-icon-menu",
-          menuShow: true,
-          children: [
-            {
-              path: "/finance/aaaaa",
-              component: Plan,
-              title: "订单管理",
-              name: "Order",
-              menuShow: true,
-            },
-            {
-              path: "/finance/bbbbbb",
-              component: Mission,
-              title: "收款单",
-              name: "BillsPaymentsList",
-              menuShow: true,
-            },
-            {
-              path: "/finance/cccccc",
-              component: Maillist,
-              title: "发货单",
-              name: "BillsShipList",
-              menuShow: true,
-            },
-          ],
-        },
-        {
-          path: "/finance/dddddd",
-          component: LeftNav,
-          title: "金币管理", // 当前路由的name
-          name: "jinbiguanli",
-          iconCls: "iconfont icon-home", // 图标样式class
-          menuShow: true,
-          children: [
-            {
-              path: "/finance/dddddd",
-              component: VehicleManage,
-              title: "金币管理",
-              name: "CurrencyManage",
-              menuShow: true,
-            },
-          ],
-        },
-      ],
-    },
+    // {
+    //   path: "/dashboardManager",
+    //   name: "dashboard", // 根据name区分不同子模块（左侧导航）
+    //   redirect: "/dashboard/plan",
+    //   type: "dashboard",
+    //   title: "工作台",
+    //   component: Home,
+    //   menuShow: true,
+    //   children: [
+    //     {
+    //       path: "/dashboard/plan",
+    //       component: LeftNav,
+    //       title: "我的设置",
+    //       iconCls: "el-icon-menu",
+    //       menuShow: true,
+    //       children: [
+    //         {
+    //           path: "/dashboard/plan",
+    //           component: Plan,
+    //           title: "行程计划",
+    //           menuShow: true,
+    //         },
+    //         {
+    //           path: "/dashboard/mission",
+    //           component: Mission,
+    //           title: "我的任务",
+    //           menuShow: true,
+    //         },
+    //         {
+    //           path: "/dashboard/maillist",
+    //           component: Maillist,
+    //           title: "通讯录",
+    //           menuShow: true,
+    //         },
+    //       ],
+    //     },
+    //     {
+    //       path: "/dashboard/mySet",
+    //       component: LeftNav,
+    //       name: "mySet", // 当前路由的name
+    //       iconCls: "iconfont icon-home", // 图标样式class
+    //       menuShow: true,
+    //       children: [
+    //         {
+    //           path: "/dashboard/mySet",
+    //           component: Dashboard,
+    //           title: "首页",
+    //           menuShow: true,
+    //         },
+    //       ],
+    //     },
+    //   ],
+    // },
+    // {
+    //   path: "/enterpriseManager",
+    //   type: "enterprise",
+    //   name: "enterprise",
+    //   title: "企业管理",
+    //   component: Home,
+    //   redirect: "/enterprise/list",
+    //   menuShow: true,
+    //   children: [
+    //     {
+    //       path: "/enterprise/list",
+    //       component: LeftNav,
+    //       name: "enterpriseList",
+    //       title: "企业数据",
+    //       iconCls: "iconfont icon-home", // 图标样式class
+    //       menuShow: true,
+    //       children: [
+    //         {
+    //           path: "/enterprise/list",
+    //           component: EnterpriseList,
+    //           title: "企业列表",
+    //           name: "abcde3",
+    //           menuShow: true,
+    //         },
+    //         {
+    //           path: "/enterprise/detail",
+    //           component: EnterpriseDetail,
+    //           title: "企业详情",
+    //           name: "abcde4",
+    //           menuShow: false,
+    //         },
+    //       ],
+    //     },
+    //     {
+    //       path: "/enterprise/add",
+    //       component: LeftNav,
+    //       name: "enterpriseAdd",
+    //       iconCls: "el-icon-menu",
+    //       menuShow: true,
+    //       children: [
+    //         {
+    //           path: "/enterprise/add",
+    //           component: EnterpriseAdd,
+    //           title: "企业添加",
+    //           name: "abcde",
+    //           menuShow: true,
+    //         },
+    //       ],
+    //     },
+    //     {
+    //       path: "/enterprise/validate",
+    //       component: LeftNav,
+    //       name: "enterpriseValidate",
+    //       iconCls: "el-icon-menu",
+    //       menuShow: true,
+    //       children: [
+    //         {
+    //           path: "/enterprise/validate",
+    //           component: EnterpriseValidate,
+    //           title: "企业认证",
+    //           name: "ddfff",
+    //           menuShow: true,
+    //         },
+    //       ],
+    //     },
+    //   ],
+    // },
+    // {
+    //   path: "/vehicleManager",
+    //   type: "vehicle",
+    //   name: "vehicle",
+    //   title: "车辆信息",
+    //   component: Home,
+    //   redirect: "/vehicle/list",
+    //   menuShow: true,
+    //   children: [
+    //     {
+    //       path: "/vehicle/list",
+    //       component: LeftNav,
+    //       name: "vehicleList",
+    //       iconCls: "iconfont icon-home", // 图标样式class
+    //       menuShow: true,
+    //       children: [
+    //         {
+    //           path: "/vehicle/list",
+    //           component: VehicleManage,
+    //           title: "车辆信息",
+    //           name: "aaaabcde",
+    //           menuShow: true,
+    //         },
+    //       ],
+    //     },
+    //   ],
+    // },
+    // {
+    //   path: "/deptManager",
+    //   type: "Question",
+    //   name: "Question",
+    //   title: "题库",
+    //   component: Home,
+    //   redirect: "/question/list",
+    //   menuShow: true,
+    //   children: [
+    //     {
+    //       path: "/question",
+    //       component: LeftNav,
+    //       redirect: "/question/list",
+    //       name: "QuestionList",
+    //       iconCls: "iconfont icon-home", // 图标样式class
+    //       menuShow: true,
+    //       children: [
+    //         {
+    //           path: "/question/list",
+    //           component: DeptManager,
+    //           title: "题库管理",
+    //           name: "QuestionBankManageWrap",
+    //           menuShow: true,
+    //         },
+    //       ],
+    //     },
+    //   ],
+    // },
+    // {
+    //   path: "/financeManager",
+    //   type: "finance", // 根据type区分不同模块（顶部导航）
+    //   name: "finance", // 根据name区分不同子模块（左侧导航）
+    //   title: "财务",
+    //   redirect: "/finance/aaaaa",
+    //   component: Home,
+    //   menuShow: true,
+    //   children: [
+    //     {
+    //       path: "/finance/aaaaa",
+    //       component: LeftNav,
+    //       title: "订单管理",
+    //       name: "dingdanguanli",
+    //       iconCls: "el-icon-menu",
+    //       menuShow: true,
+    //       children: [
+    //         {
+    //           path: "/finance/aaaaa",
+    //           component: Plan,
+    //           title: "订单管理",
+    //           name: "Order",
+    //           menuShow: true,
+    //         },
+    //         {
+    //           path: "/finance/bbbbbb",
+    //           component: Mission,
+    //           title: "收款单",
+    //           name: "BillsPaymentsList",
+    //           menuShow: true,
+    //         },
+    //         {
+    //           path: "/finance/cccccc",
+    //           component: Maillist,
+    //           title: "发货单",
+    //           name: "BillsShipList",
+    //           menuShow: true,
+    //         },
+    //       ],
+    //     },
+    //     {
+    //       path: "/finance/dddddd",
+    //       component: LeftNav,
+    //       title: "金币管理", // 当前路由的name
+    //       name: "jinbiguanli",
+    //       iconCls: "iconfont icon-home", // 图标样式class
+    //       menuShow: true,
+    //       children: [
+    //         {
+    //           path: "/finance/dddddd",
+    //           component: VehicleManage,
+    //           title: "金币管理",
+    //           name: "CurrencyManage",
+    //           menuShow: true,
+    //         },
+    //       ],
+    //     },
+    //   ],
+    // },
 
     {
       path: "/systemManager",

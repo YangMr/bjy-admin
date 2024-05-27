@@ -91,7 +91,8 @@ export default {
       loading: false,
       account: {
         mobile: "manageruser0",
-        password: "bjyx666",
+        // password: "bjyx666",
+        password: "kraw6XdtbzjrrEQrDt4qaQ==",
       },
       rules: {
         mobile: [
