@@ -21,7 +21,6 @@
         <el-row
           ><!-- v-show="$store.state.topNavState==='home'"注意：这里就是topNavState作用之处，根据当前路由所在根路由的type值判断显示不同顶部导航菜单 -->
           <el-col :span="24">
-
             <el-menu
               :default-active="defaultActiveIndex"
               class="el-menu-demo"
@@ -32,13 +31,16 @@
               <el-menu-item
                 v-for="(item, index) in routers"
                 :key="index"
-                :class="{'is-active':defaultActiveIndex==item.name||defaultActiveIndex=='/'+item.name}"
+                :class="{
+                  'is-active':
+                    defaultActiveIndex == item.name ||
+                    defaultActiveIndex == '/' + item.name,
+                }"
                 :index="item.path"
               >
                 {{ item.title }}
               </el-menu-item>
             </el-menu>
-
           </el-col>
         </el-row>
       </div>
@@ -68,13 +70,19 @@
     </el-col>
 
     <!--中间-->
-    <div v-if="defaultActiveIndex=='/Manager'||defaultActiveIndex=='/'">首页数据
+    <div v-if="defaultActiveIndex == '/Manager' || defaultActiveIndex == '/'">
+      首页数据
 
-      <hr>    <div @click="$router.push({name:'system'})">系统管理</div>
-      <hr>    <div @click="$router.push({name:'dddddd'})">全局参数11</div>
-      <hr>    <div @click="$router.push({name:'quanjucanshu'})">全局参数22</div>
-      <hr>    <div @click="$router.push({name:'QuestionList'})">题库</div>
-      <hr>    <div @click="$router.push({name:'vehicleList'})">车辆信息</div>
+      <hr />
+      <div @click="$router.push({ name: 'system' })">系统管理</div>
+      <hr />
+      <div @click="$router.push({ name: 'dddddd' })">全局参数11</div>
+      <hr />
+      <div @click="$router.push({ name: 'quanjucanshu' })">全局参数22</div>
+      <hr />
+      <div @click="$router.push({ name: 'QuestionList' })">题库</div>
+      <hr />
+      <div @click="$router.push({ name: 'vehicleList' })">车辆信息</div>
     </div>
     <transition name="fade" mode="out-in" v-else>
       <router-view></router-view>
@@ -98,11 +106,12 @@ export default {
     // 此时 data 已经被 observed 了
     this.fetchNavData();
 
-
-    this.$http.get("/api/index/course", {
-      school_id:''
-    }).then(data => {
-        console.log(data)
+    this.$http
+      .get("/api/index/course", {
+        school_id: "",
+      })
+      .then((data) => {
+        console.log(data);
       });
   },
   methods: {
@@ -118,7 +127,7 @@ export default {
       // 初始化菜单激活项
       var cur_path = this.$route.path; //获取当前路由
       var routers = this.$router.options.routes; // 获取路由对象
-      console.log(this.$router)
+      console.log(this.$router);
       var nav_type = "",
         nav_name = "";
       this.routers = [];
@@ -155,8 +164,7 @@ export default {
       }
       this.$store.state.topNavState = nav_type; // 改变topNavState状态的值
       this.$store.state.leftNavState = nav_name; // 改变leftNavState状态的值
-      this.defaultActiveIndex = "/" + nav_name ;
-
+      this.defaultActiveIndex = "/" + nav_name;
     },
     jumpTo(url) {
       this.defaultActiveIndex = url;

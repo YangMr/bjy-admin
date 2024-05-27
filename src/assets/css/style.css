@@ -363,3 +363,11 @@ aside .el-submenu .el-menu-item.is-active:hover, aside .el-menu-item.is-active:h
   transform: translateX(600px);
 }
 /* sidebar style end */
+
+
+.layout-main {
+  height: calc(-70px + 100vh);
+  background: rgb(255, 255, 255);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
