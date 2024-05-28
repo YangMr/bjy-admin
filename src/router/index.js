@@ -178,6 +178,12 @@ let router = new Router({
               component: () => import("@/views/finance/bills/refund/index.vue"),
               title: "退款审批",
               menuShow: true,
+              meta: {
+                title: "退款审批",
+              },
+              children: [
+                
+              ]
             },
             {
               path: "/finance/order/address",
