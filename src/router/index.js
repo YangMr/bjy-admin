@@ -182,7 +182,15 @@ let router = new Router({
                 title: "退款审批",
               },
               children: [
-                
+                {
+                  path: "/exports?type=6",
+                  component: () => import("@/views/finance/bills/refund/exports.vue"),
+                  title: "查看导出",
+                  menuShow: true,
+                  meta: {
+                    title: "查看导出",
+                  },
+                }
               ]
             },
             {
@@ -228,7 +236,6 @@ let router = new Router({
         },
       ],
     },
-
     {
       path: "/course",
       name: "Course", // 根据name区分不同子模块（左侧导航）
