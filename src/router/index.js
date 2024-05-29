@@ -115,7 +115,10 @@ let router = new Router({
               component: () => import("@/views/user/role/index.vue"),
               title: "后台角色管理",
               menuShow: true,
+             
+              
             },
+            
           ],
         },
         {
@@ -133,6 +136,7 @@ let router = new Router({
             },
           ],
         },
+       
       ],
     },
 
@@ -285,6 +289,7 @@ let router = new Router({
             },
           ],
         },
+        
         // {
         //   path: "/finance/vcurrency",
         //   component: LeftNav,
