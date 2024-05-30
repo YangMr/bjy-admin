@@ -166,6 +166,12 @@ let router = new Router({
                 import("@/views/finance/bills/payments/index.vue"),
               title: "收款单",
               menuShow: true,
+
+            },
+            {
+              path:'/exports',
+              component:() =>
+                import('@/views/finance/bills/payments/exports.vue')
             },
             {
               path: "/finance/bills/ship",
