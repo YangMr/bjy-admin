@@ -1,5 +1,5 @@
 <template>
-    <el-dialog :before-close="beforeClose" title="示例图" :visible.sync="visible" width="520px" close-on-click-modal close-on-press-escape>
+    <el-dialog :before-close="beforeCloseImg" title="示例图" :visible.sync="visible" width="520px" close-on-click-modal close-on-press-escape>
         <div style="text-align: center;">
             <img src="https://devwx.baijiayun.com/adminstyle/img/share.0f8d1f8e.png" alt="">
         </div>
@@ -19,8 +19,8 @@ export default {
      console.log(this.visible);
     },
     methods: {
-        beforeClose(){
-            this.$emit('UpdataVisible')
+        beforeCloseImg(){
+            this.$emit('beforeCloseImg')
         }
     }
 

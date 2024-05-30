@@ -7,3 +7,7 @@ export const getMobileShareListApi=(params)=>{
 export const mobileShareDeleteApi=(id)=>{
     return API.DELETE('/api/shareSetting/'+id)
 }
+
+export const AddListApi=(params)=>{
+    return API.POST('/api/shareSetting',params);
+}
