@@ -174,6 +174,18 @@ let router = new Router({
               menuShow: true,
             },
             {
+              path: "/exports",
+              component: () => import("@/views/finance/bills/ship/exports.vue"),
+              title: "查看导出",
+              menuShow: false,
+            },
+            {
+              path: "/detail",
+              component: () => import("@/views/finance/bills/ship/detail.vue"),
+              title: "发货单详情",
+              menuShow: false,
+            },
+            {
               path: "/finance/bills/refund",
               component: () => import("@/views/finance/bills/refund/index.vue"),
               title: "退款审批",
