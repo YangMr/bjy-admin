@@ -136,7 +136,7 @@
       </div>
     </main>
     <ExportDialog ref="RefdialogFn" ></ExportDialog>
-    <EditDialog ref="RefEditdialog"></EditDialog>
+    <EditDialog ref="RefEditdialog" @addOkFn="getRefundFn"></EditDialog>
   </div>
 </template>
 
@@ -226,6 +226,7 @@ export default {
         console.log(res)
         this.tableData = res.data.list
         this.total = res.data.total
+        
       })
     },
     dialogFn(){

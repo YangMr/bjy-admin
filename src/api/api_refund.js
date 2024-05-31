@@ -19,3 +19,13 @@ export async function batchExport(data) {
 export async function handleRefund(id) {
     return API.GET(`/api/refund/detail/${id}?`)
 }
+
+// 拒绝退款
+export async function refuseRefund(data) {
+    return API.POST('/api/refund/auditing', data)
+}
+
+// 同意退款
+export async function agreeRefund(data) {
+    return API.POST('/api/refund/doAudit', data)
+}
