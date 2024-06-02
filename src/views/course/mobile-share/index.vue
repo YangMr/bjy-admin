@@ -13,7 +13,7 @@
       <el-table-column align="center" prop="sort" label="序号" width="60" />
       <el-table-column align="center" prop="name" label="图片">
         <template #default="{ row }">
-          <img width="86.2" height="100" :src="row.img" alt="">
+          <img  height="100px" :src="row.img" alt="">
         </template>
       </el-table-column>
       <el-table-column align="center" prop="creator_name" label="创建人" width="120" />

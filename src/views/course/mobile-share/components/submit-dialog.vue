@@ -5,7 +5,9 @@
       <el-form ref="formRef" :model="form" :rules="rules" label-width="110px" label-position="rtl">
         <el-form-item label="上传图片模板" prop="img">
           <div style="display: flex;height: 115px;overflow: hidden;">
-            <img v-show="form.img" width="100px" height="150px" :src="form.img" alt="">
+            <div v-show="form.img" style="width: 100px;">
+              <img width="100%" :src="form.img" alt="">
+            </div>
             <div style="margin-left: 10px;">
               <el-upload class="fileBtn" action="https:devwx.baijiayun.com/api/public/img" :limit="1"
                 :headers="{ Authorization: 'Bearer ' + token }" :file-list="fileList"
