@@ -35,7 +35,9 @@
     </el-pagination>
 
     <shareDialog :visible="visible" @beforeCloseImg="beforeCloseImg"></shareDialog>
-    <submitDialog :rowData="rowData" :title="title" :submitVisible="submitVisible" @beforeCloseSubmit="beforeCloseSubmit"
+
+    <submitDialog ref="submitDialogRef"
+    :title="title" :submitVisible="submitVisible" @beforeCloseSubmit="beforeCloseSubmit"
       @createds="createds">
     </submitDialog>
   </div>
@@ -61,7 +63,6 @@ export default {
       visible: false,
       submitVisible: false,
       title: '',
-      rowData:{}
     }
   },
   created() {
@@ -69,11 +70,17 @@ export default {
 
   },
   methods: {
+
+
+
+
     //编辑模板
     handleEdit(row) {
       this.submitVisible = true;
       this.title = '编辑模板';
-      this.rowData=row;
+
+      this.$refs.submitDialogRef.backfill(row);
+      // this.rowData=row;
     },
     createds() {
       this.getList();
