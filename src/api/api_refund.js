@@ -29,3 +29,13 @@ export async function refuseRefund(data) {
 export async function agreeRefund(data) {
     return API.POST('/api/refund/doAudit', data)
 }
+
+// 查看导出
+export async function getExportList(params) {
+    return API.GET('/api/export/task?', params)
+}
+
+// 删除导出任务
+export async function deleteExport(id) {
+    return API.DELETE(`/api/export/task/${id}`)
+}

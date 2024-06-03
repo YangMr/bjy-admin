@@ -59,6 +59,7 @@ export default {
           batchExport(this.form).then(res => {
             console.log(res);
             this.dialogFormVisible = false
+            this.$router.push('/exports')
           })
         } else {
           console.log('error submit!!');

@@ -62,7 +62,7 @@
     <main>
       <p>
         <el-button class="btn" @click="dialogFn">批量导出</el-button>
-        <el-button class="btn" @click="$router.push('/exports?type=6')">查看导出</el-button>
+        <el-button class="btn" @click="$router.push('/exports')">查看导出</el-button>
       </p>
       <el-table :data="tableData" style="width: 100%">
         <el-table-column prop="refund_num" label="退款单编号" width="180">
@@ -124,7 +124,7 @@
         <el-table-column fixed="right" label="操作" width="100">
           <template slot-scope="scope">
             <el-button style="color: #b24901;" type="text" v-show="scope.row.status==1" @click="RefEditdialogFn(scope.row.id)">处理退款</el-button>
-            <p v-show="scope.row.status != 1">--</p>
+            <p v-show="scope.row.status != 0">--</p>
           </template>
         </el-table-column>
       </el-table>
@@ -185,7 +185,6 @@ export default {
         this.formInline.refund_start = this.refund[0].getTime()
         this.formInline.refund_end = this.refund[1].getTime()
       }
-      console.log("submit!", this.formInline);
       this.getRefundFn()
     },
     reset() {
@@ -353,7 +352,7 @@ header {
 main {
   padding: 0 20px 20px 20px;
 
-  p {}
+  // p {}
 
   .el-table {
     border: 1px solid #dcdee2;

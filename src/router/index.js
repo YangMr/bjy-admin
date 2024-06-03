@@ -180,18 +180,16 @@ let router = new Router({
               menuShow: true,
               meta: {
                 title: "退款审批",
+              }
+            },
+            {
+              path: "/exports",
+              component: () => import("@/views/finance/bills/refund/exports.vue"),
+              title: "查看导出",
+              menuShow: false,
+              meta: {
+                title: "查看导出",
               },
-              children: [
-                {
-                  path: "/exports?type=6",
-                  component: () => import("@/views/finance/bills/refund/exports.vue"),
-                  title: "查看导出",
-                  menuShow: true,
-                  meta: {
-                    title: "查看导出",
-                  },
-                }
-              ]
             },
             {
               path: "/finance/order/address",
