@@ -89,7 +89,7 @@ export default {
     };
   },
   methods: {
-    async getTas() {
+    async getTas() { 
       let res = await addTasklist(this.form);
       console.log(res);
       this.tableData = res.data.list;
