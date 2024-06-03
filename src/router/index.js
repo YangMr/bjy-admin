@@ -115,7 +115,10 @@ let router = new Router({
               component: () => import("@/views/user/role/index.vue"),
               title: "后台角色管理",
               menuShow: true,
+             
+              
             },
+            
           ],
         },
         {
@@ -133,6 +136,7 @@ let router = new Router({
             },
           ],
         },
+       
       ],
     },
 
@@ -166,6 +170,12 @@ let router = new Router({
                 import("@/views/finance/bills/payments/index.vue"),
               title: "收款单",
               menuShow: true,
+
+            },
+            {
+              path:'/exports',
+              component:() =>
+                import('@/views/finance/bills/payments/exports.vue')
             },
             {
               path: "/finance/bills/ship",
@@ -174,10 +184,34 @@ let router = new Router({
               menuShow: true,
             },
             {
+              path: "/exports",
+              component: () => import("@/views/finance/bills/ship/exports.vue"),
+              title: "查看导出",
+              menuShow: false,
+            },
+            {
+              path: "/detail",
+              component: () => import("@/views/finance/bills/ship/detail.vue"),
+              title: "发货单详情",
+              menuShow: false,
+            },
+            {
               path: "/finance/bills/refund",
               component: () => import("@/views/finance/bills/refund/index.vue"),
               title: "退款审批",
               menuShow: true,
+              meta: {
+                title: "退款审批",
+              }
+            },
+            {
+              path: "/exports",
+              component: () => import("@/views/finance/bills/refund/exports.vue"),
+              title: "查看导出",
+              menuShow: false,
+              meta: {
+                title: "查看导出",
+              },
             },
             {
               path: "/finance/order/address",
@@ -222,7 +256,6 @@ let router = new Router({
         },
       ],
     },
-
     {
       path: "/course",
       name: "Course", // 根据name区分不同子模块（左侧导航）
@@ -285,6 +318,7 @@ let router = new Router({
             },
           ],
         },
+        
         // {
         //   path: "/finance/vcurrency",
         //   component: LeftNav,
