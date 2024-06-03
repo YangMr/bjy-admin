@@ -33,7 +33,7 @@ axios.interceptors.response.use(function (response) {
   return response;
 }, function (error) {
   // Do something with response error
-  alert(222)
+  // alert(222)
   return Promise.reject(error);
 });
 
